@@ -93,19 +93,19 @@
 
 
 
-<meta name="description" content="最近在学习中才知道模板引擎这个东西，发现这玩意很受用，在自己看了一些介绍文章之后，也发现了JS的replace函数中，第二个参数不仅仅可以是一个字符串，还可以是一个函数。 而以前却完全不知道这个知识点。并没有研究的很深入，但想通过这篇文章，就一个JS最基本的模板引擎总结一下我对于replace函数的新认识。 #模板引擎基本原理 模板引擎的原理说简单也比较简单，就是通过正则表达式识别模板标识，并利用">
+<meta name="description" content="最近在学习中才知道模板引擎这个东西，发现这玩意很受用，在自己看了一些介绍文章之后，也发现了JS的replace函数中，第二个参数不仅仅可以是一个字符串，还可以是一个函数。 而以前却完全不知道这个知识点。并没有研究的很深入，但想通过这篇文章，就一个JS最基本的模板引擎总结一下我对于replace函数的新认识。 模板引擎基本原理模板引擎的原理说简单也比较简单，就是通过正则表达式识别模板标识，并利用数据">
 <meta name="keywords" content="-经验总结">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JS最基础的一个模板引擎">
 <meta property="og:url" content="http://yoursite.com/2017/08/07/JS最基础的一个模板引擎/index.html">
 <meta property="og:site_name" content="贾撒欢的前端杂货铺">
-<meta property="og:description" content="最近在学习中才知道模板引擎这个东西，发现这玩意很受用，在自己看了一些介绍文章之后，也发现了JS的replace函数中，第二个参数不仅仅可以是一个字符串，还可以是一个函数。 而以前却完全不知道这个知识点。并没有研究的很深入，但想通过这篇文章，就一个JS最基本的模板引擎总结一下我对于replace函数的新认识。 #模板引擎基本原理 模板引擎的原理说简单也比较简单，就是通过正则表达式识别模板标识，并利用">
+<meta property="og:description" content="最近在学习中才知道模板引擎这个东西，发现这玩意很受用，在自己看了一些介绍文章之后，也发现了JS的replace函数中，第二个参数不仅仅可以是一个字符串，还可以是一个函数。 而以前却完全不知道这个知识点。并没有研究的很深入，但想通过这篇文章，就一个JS最基本的模板引擎总结一下我对于replace函数的新认识。 模板引擎基本原理模板引擎的原理说简单也比较简单，就是通过正则表达式识别模板标识，并利用数据">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://oss-cn-hangzhou.aliyuncs.com/yqfiles/e437978f5ecc9f4046d63de6cdcce42bdc308ea2.png?_=5518474">
-<meta property="og:updated_time" content="2017-08-07T06:18:06.519Z">
+<meta property="og:updated_time" content="2017-08-07T06:32:29.139Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS最基础的一个模板引擎">
-<meta name="twitter:description" content="最近在学习中才知道模板引擎这个东西，发现这玩意很受用，在自己看了一些介绍文章之后，也发现了JS的replace函数中，第二个参数不仅仅可以是一个字符串，还可以是一个函数。 而以前却完全不知道这个知识点。并没有研究的很深入，但想通过这篇文章，就一个JS最基本的模板引擎总结一下我对于replace函数的新认识。 #模板引擎基本原理 模板引擎的原理说简单也比较简单，就是通过正则表达式识别模板标识，并利用">
+<meta name="twitter:description" content="最近在学习中才知道模板引擎这个东西，发现这玩意很受用，在自己看了一些介绍文章之后，也发现了JS的replace函数中，第二个参数不仅仅可以是一个字符串，还可以是一个函数。 而以前却完全不知道这个知识点。并没有研究的很深入，但想通过这篇文章，就一个JS最基本的模板引擎总结一下我对于replace函数的新认识。 模板引擎基本原理模板引擎的原理说简单也比较简单，就是通过正则表达式识别模板标识，并利用数据">
 <meta name="twitter:image" content="https://oss-cn-hangzhou.aliyuncs.com/yqfiles/e437978f5ecc9f4046d63de6cdcce42bdc308ea2.png?_=5518474">
 
 
@@ -357,19 +357,19 @@
       
         <p>最近在学习中才知道模板引擎这个东西，发现这玩意很受用，在自己看了一些介绍文章之后，也发现了JS的replace函数中，第二个参数不仅仅可以是一个字符串，还可以是一个函数。</p>
 <p>而以前却完全不知道这个知识点。并没有研究的很深入，但想通过这篇文章，就一个JS最基本的模板引擎总结一下我对于replace函数的新认识。</p>
-<p>#模板引擎基本原理</p>
-<p>模板引擎的原理说简单也比较简单，就是通过正则表达式识别模板标识，并利用数据替换其中的标识符。<br>这其中的难点有两个，<em>一个就是正则表达式的使用，另一个是replace函数中，第二个参数可以是函数的知识点</em>。</p>
+<h1 id="模板引擎基本原理"><a href="#模板引擎基本原理" class="headerlink" title="模板引擎基本原理"></a>模板引擎基本原理</h1><p>模板引擎的原理说简单也比较简单，就是通过正则表达式识别模板标识，并利用数据替换其中的标识符。<br>这其中的难点有两个，<em>一个就是正则表达式的使用，另一个是replace函数中，第二个参数可以是函数的知识点</em>。</p>
+<a id="more"></a>
 <p>从网上扒了一个图片示例：<br><img src="https://oss-cn-hangzhou.aliyuncs.com/yqfiles/e437978f5ecc9f4046d63de6cdcce42bdc308ea2.png?_=5518474" alt="模板引擎原理"></p>
 <p>这其中的模板引擎就是<code>Hello, &lt;%= name%&gt;</code>。<br>假如传入的数据是<code>{name:&#39;eric&#39;}</code>，那么通过模板引擎解析后，我们希望得到<code>Hello,eric</code>。<br>从模板引擎来看，模板的前半部分是普通字符串，后半部分是模板标识，我们只用将其中的标识符替换为表达式即可，渲染过程就是图片中的过程。</p>
 <p>而我自己也基于此，写了一个非常简单的模板引擎：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var info = render(&apos;我是&#123;&#123;name&#125;&#125;,年龄&#123;&#123;age&#125;&#125;,性别&#123;&#123;sex&#125;&#125;&apos;,&#123;</div><div class="line">           		name:&apos;eric&apos;,</div><div class="line">           		age:18</div><div class="line">           	&#125;);</div><div class="line">           	</div><div class="line">console.log(info);</div></pre></td></tr></table></figure></p>
 <p>输出结果为：我是eric,年龄18,性别undefined</p>
 <p>主体函数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">function render(tpl,data) &#123;</div><div class="line">    return tpl.replace(/\&#123;\&#123;(.+?)\&#125;\&#125;/g,function () &#123;</div><div class="line">        var key = arguments[1];</div><div class="line">        return data[key];</div><div class="line">    &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>#replace的函数参数</p>
-<p>通过上面的例子可以看到，在给tpl使用replace方法时，第一个参数为正则的匹配式，而第二个参数则为一个函数。<br>我之前由于不知道replace可以使用函数传递参数，看到这个写法后也是一脸懵逼。</p>
+<h1 id="replace的函数参数"><a href="#replace的函数参数" class="headerlink" title="replace的函数参数"></a>replace的函数参数</h1><p>通过上面的例子可以看到，在给tpl使用replace方法时，第一个参数为正则的匹配式，而第二个参数则为一个函数。<br>我之前由于不知道replace可以使用函数传递参数，看到这个写法后也是一脸懵逼。</p>
 <p>所以为了便于理解，这个函数也可以这么写：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function render(tpl,data) &#123;</div><div class="line">    return tpl.replace(/\&#123;\&#123;(.+?)\&#125;\&#125;/g,function (m,m1) &#123;</div><div class="line">        return data[m1];</div><div class="line">    &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>在控制台打断点后，可以很明显的看出，这个函数里的两个参数分别为什么：</p>
-<p>m代表<code></code>，而m1则代表<code>name</code>。也就是说m为将被替换的标识符，而m1是被传入数据的键名。</p>
+<p>m代表<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;&#123;name&#125;&#125;</div></pre></td></tr></table></figure></p>
+<p>，而m1则代表<code>name</code>。也就是说m为将被替换的标识符，而m1是被传入数据的键名。</p>
 <p>这也就是replace方法里，第二个参数为function时的用法。</p>
 
       
@@ -469,8 +469,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/avatar.jpg"
@@ -543,6 +552,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#模板引擎基本原理"><span class="nav-number">1.</span> <span class="nav-text">模板引擎基本原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#replace的函数参数"><span class="nav-number">2.</span> <span class="nav-text">replace的函数参数</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
