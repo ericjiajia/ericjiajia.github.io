@@ -101,7 +101,7 @@
 <meta property="og:site_name" content="贾撒欢的前端杂货铺">
 <meta property="og:description" content="在上一篇文章中详细叙述了关于闭包的一些知识点，以便更深入的理解闭包，所以这篇文章就要详细说明文章的主题了——循环绑定事件。关于这篇文章有什么疑点可以参考上一篇文章。 经典的循环绑定大坑html代码:1234567&amp;lt;ul&amp;gt;    &amp;lt;li&amp;gt;0&amp;lt;/li&amp;gt;    &amp;lt;li&amp;gt;1&amp;lt;/li&amp;gt;    &amp;lt;li&amp;gt;2&amp;lt;/li&amp;gt;    &amp;l">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-21T04:39:09.576Z">
+<meta property="og:updated_time" content="2017-08-21T04:49:59.782Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="循环绑定事件中解决闭包的三种解决方法（二）">
 <meta name="twitter:description" content="在上一篇文章中详细叙述了关于闭包的一些知识点，以便更深入的理解闭包，所以这篇文章就要详细说明文章的主题了——循环绑定事件。关于这篇文章有什么疑点可以参考上一篇文章。 经典的循环绑定大坑html代码:1234567&amp;lt;ul&amp;gt;    &amp;lt;li&amp;gt;0&amp;lt;/li&amp;gt;    &amp;lt;li&amp;gt;1&amp;lt;/li&amp;gt;    &amp;lt;li&amp;gt;2&amp;lt;/li&amp;gt;    &amp;l">
@@ -363,7 +363,10 @@
 <h1 id="解决办法二-——-forEach"><a href="#解决办法二-——-forEach" class="headerlink" title="解决办法二 —— forEach"></a>解决办法二 —— forEach</h1><p>forEach主要在循环数未知的情况下使用，据闻性能甚至比for循环也要好，而且非常方便。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var nodes = document.querySelectorAll(&apos;ul li&apos;);</div><div class="line">nodes.forEach(function (node,index) &#123;</div><div class="line">    node.addEventListener(&apos;click&apos;,function () &#123;</div><div class="line">        alert(&apos;click&apos; + index)</div><div class="line">    &#125;)</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
 <p>这里的<code>node</code>是循环数组里的每个实例对象，index是每个实例对象的下标，所以也可以达到点击每个li，弹出相对应数字的目的。</p>
 <h1 id="解决办法三-——-ES6的let"><a href="#解决办法三-——-ES6的let" class="headerlink" title="解决办法三 —— ES6的let"></a>解决办法三 —— ES6的let</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var nodes = document.querySelectorAll(&apos;ul li&apos;);</div><div class="line">for(let i = 0,len = nodes.length; i&lt;len;i++)&#123;</div><div class="line">    nodes[i].addEventListener(&apos;click&apos;,function () &#123;</div><div class="line">        alert(&apos;click&apos;+i);</div><div class="line">    &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>ES5中不存在块级作用域，所以迭代变量i泄露了，然后对于数组<code>nodes</code>内每一个函数内的i都是向上查询作用域<code>nodes</code>的，所以结果是5。</p>
+<p>ES5中不存在块级作用域，所以迭代变量i泄露了，然后对于数组<code>nodes</code>内每一个函数内的i都是向上查询作用域<code>nodes</code>的，所以结果是5。如果仍不容易理解，我从网上查到了这段代码，便于深入理解：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var nodes = document.querySelectorAll(&apos;ul li&apos;);</div><div class="line">var i;</div><div class="line">for(i = 0; i &lt; nodes.length; i++)&#123;  </div><div class="line">    aLi[i].onclick = function ()&#123;  </div><div class="line">        alert(i);  </div><div class="line">    &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>之前<code>for</code>循环里用<code>var</code>定义等同于上述代码，因为没有块级作用域的原因， for循环的里面<code>var</code>定义的变量<code>i</code>自动提升为全局变量，这时候 <code>alert(i)</code> 里面的<code>i</code>还没有值。</p>
+<p>当用户调用onclick的匿名函数时，需要对i求值解析程序首先会在事件处理程序内部查找，但 i 没有定义。</p>
+<p>然后，又到方法外部去查找，此时有定义，但此时的i已经循环完毕，因此，无论点哪个标签，弹出的都是最后一个标签的index。</p>
 <p>我们之前使用闭包里的匿名函数自执行，说白了就是为了创造块级作用域，但在ES6语法中，<code>let</code>便提出了块级作用域。所以这里使用<code>let</code>声明变量：变量i是let声明的，当前的i只在本轮循环有效，所以每一次循环的i其实都是一个新的变量，所以最后输出的是6。<br>也可以有效解决该问题。</p>
 
       
