@@ -101,7 +101,7 @@
 <meta property="og:site_name" content="贾撒欢的前端杂货铺">
 <meta property="og:description" content="在上一篇文章中详细叙述了关于闭包的一些知识点，以便更深入的理解闭包，所以这篇文章就要详细说明文章的主题了——循环绑定事件。关于这篇文章有什么疑点可以参考上一篇文章。 经典的循环绑定大坑html代码:1234567&amp;lt;ul&amp;gt;    &amp;lt;li&amp;gt;0&amp;lt;/li&amp;gt;    &amp;lt;li&amp;gt;1&amp;lt;/li&amp;gt;    &amp;lt;li&amp;gt;2&amp;lt;/li&amp;gt;    &amp;l">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-21T04:49:59.782Z">
+<meta property="og:updated_time" content="2017-08-21T14:58:44.473Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="循环绑定事件中解决闭包的三种解决方法（二）">
 <meta name="twitter:description" content="在上一篇文章中详细叙述了关于闭包的一些知识点，以便更深入的理解闭包，所以这篇文章就要详细说明文章的主题了——循环绑定事件。关于这篇文章有什么疑点可以参考上一篇文章。 经典的循环绑定大坑html代码:1234567&amp;lt;ul&amp;gt;    &amp;lt;li&amp;gt;0&amp;lt;/li&amp;gt;    &amp;lt;li&amp;gt;1&amp;lt;/li&amp;gt;    &amp;lt;li&amp;gt;2&amp;lt;/li&amp;gt;    &amp;l">
@@ -367,7 +367,7 @@
 <p>之前<code>for</code>循环里用<code>var</code>定义等同于上述代码，因为没有块级作用域的原因， for循环的里面<code>var</code>定义的变量<code>i</code>自动提升为全局变量，这时候 <code>alert(i)</code> 里面的<code>i</code>还没有值。</p>
 <p>当用户调用onclick的匿名函数时，需要对i求值解析程序首先会在事件处理程序内部查找，但 i 没有定义。</p>
 <p>然后，又到方法外部去查找，此时有定义，但此时的i已经循环完毕，因此，无论点哪个标签，弹出的都是最后一个标签的index。</p>
-<p>我们之前使用闭包里的匿名函数自执行，说白了就是为了创造块级作用域，但在ES6语法中，<code>let</code>便提出了块级作用域。所以这里使用<code>let</code>声明变量：变量i是let声明的，当前的i只在本轮循环有效，所以每一次循环的i其实都是一个新的变量，所以最后输出的是6。<br>也可以有效解决该问题。</p>
+<p>我们之前使用闭包里的匿名函数自执行，说白了就是为了创造块级作用域，但在ES6语法中，<code>let</code>便提出了块级作用域。所以这里使用<code>let</code>声明变量：变量i是let声明的，当前的i只在本轮循环有效，所以每一次循环的i其实都是一个新的变量。<br>所以就可以有效解决该问题。</p>
 
       
     </div>
