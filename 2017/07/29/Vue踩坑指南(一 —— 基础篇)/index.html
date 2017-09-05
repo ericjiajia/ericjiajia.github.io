@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="-框架知识," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="学习Vue有一段时间了，非常喜欢这个框架，比angular优雅很多。但是在日常的工作中，使用不算很频繁，看教程时总觉得自己会了，可总是不能得心应手的应用在实际工作当中。最终还是不得不承认“好记性不如烂笔头”这句话，准备抽时间写下这篇Vue踩坑指南，没有官方文档那么全面，但想更有针对性一些。主要是想加强自己对于Vue常用方法的一些记忆，也方便在以后的工作中查找应用。 Vue基本雏形Vue最基本的语法">
+<meta name="keywords" content="-框架知识">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue踩坑指南(一)">
+<meta property="og:url" content="http://yoursite.com/2017/07/29/Vue踩坑指南(一 —— 基础篇)/index.html">
+<meta property="og:site_name" content="贾撒欢的前端杂货铺">
+<meta property="og:description" content="学习Vue有一段时间了，非常喜欢这个框架，比angular优雅很多。但是在日常的工作中，使用不算很频繁，看教程时总觉得自己会了，可总是不能得心应手的应用在实际工作当中。最终还是不得不承认“好记性不如烂笔头”这句话，准备抽时间写下这篇Vue踩坑指南，没有官方文档那么全面，但想更有针对性一些。主要是想加强自己对于Vue常用方法的一些记忆，也方便在以后的工作中查找应用。 Vue基本雏形Vue最基本的语法">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-09-05T03:58:37.107Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vue踩坑指南(一)">
+<meta name="twitter:description" content="学习Vue有一段时间了，非常喜欢这个框架，比angular优雅很多。但是在日常的工作中，使用不算很频繁，看教程时总觉得自己会了，可总是不能得心应手的应用在实际工作当中。最终还是不得不承认“好记性不如烂笔头”这句话，准备抽时间写下这篇Vue踩坑指南，没有官方文档那么全面，但想更有针对性一些。主要是想加强自己对于Vue常用方法的一些记忆，也方便在以后的工作中查找应用。 Vue基本雏形Vue最基本的语法">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '������'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/07/29/Vue踩坑指南(一 —— 基础篇)/"/>
+
+
+
+
+
+  <title>Vue踩坑指南(一) | 贾撒欢的前端杂货铺</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">贾撒欢的前端杂货铺</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">个人博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/29/Vue踩坑指南(一 —— 基础篇)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="贾撒欢">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="贾撒欢的前端杂货铺">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Vue踩坑指南(一)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-29T20:57:06+08:00">
+                2017-07-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>学习Vue有一段时间了，非常喜欢这个框架，比angular优雅很多。但是在日常的工作中，使用不算很频繁，看教程时总觉得自己会了，可总是不能得心应手的应用在实际工作当中。<br>最终还是不得不承认“好记性不如烂笔头”这句话，准备抽时间写下这篇Vue踩坑指南，没有官方文档那么全面，但想更有针对性一些。主要是想加强自己对于Vue常用方法的一些记忆，也方便在以后的工作中查找应用。</p>
+<h1 id="Vue基本雏形"><a href="#Vue基本雏形" class="headerlink" title="Vue基本雏形"></a>Vue基本雏形</h1><p>Vue最基本的语法，无需多说</p>
+<h1 id="Vue常用指令"><a href="#Vue常用指令" class="headerlink" title="Vue常用指令"></a>Vue常用指令</h1><a id="more"></a>
+<h2 id="v-model"><a href="#v-model" class="headerlink" title="v-model"></a>v-model</h2><p>主要用于一般表单元素(input)，进行双向数据绑定</p>
+<h2 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h2><p><code>v-for</code>为主要语法，平时一般应用为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;ul&gt;</div><div class="line">    &lt;li v-for=&apos;item in data&apos;&gt; &#123;&#123;item&#125;&#125; &lt;/li&gt;</div><div class="line">&lt;/ul&gt;</div></pre></td></tr></table></figure></p>
+<p>这是最基本的循环，主要是循环对象本身，除此之外，还可以循环键名和索引，但不同于Vue1.x。<code>$index</code>,<code>$key</code>已经被废除。<br>Vue2.x的循环语法是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;ul&gt;</div><div class="line">    &lt;li v-for=&apos;(item,key,index) in data&apos;&gt; &#123;&#123;item&#125;&#125;-&#123;&#123;key&#125;&#125;-&#123;&#123;index&#125;&#125; &lt;/li&gt;</div><div class="line">&lt;/ul&gt;</div></pre></td></tr></table></figure></p>
+<p>需要注意的是，小括号内的关键字顺序不能随意摆放。</p>
+<h2 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h2><p><code>v-on</code>用来绑定事件。<br>用法为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">v-on:click=&apos;函数&apos;</div><div class="line">v-on:click/mouseout/mouseover/dblclick/mousedown/keyup/keydown.....</div></pre></td></tr></table></figure></p>
+<p>其中的<code>v-on</code>可简写为<code>@</code>：<code>@click=&#39;函数&#39;</code>。<br>这里的函数只需要在<code>new Vue({})</code>中的<code>methods</code>定义即可。</p>
+<h3 id="事件对象"><a href="#事件对象" class="headerlink" title="事件对象"></a>事件对象</h3><p>获取事件对象需要在HTML内的Vue事件函数中传入<code>$event</code>：<code>@click=show($event)</code>,<br>并且要在<code>&lt;script&gt;</code>中的Vue事件函数传入<code>ev</code>，通过<code>ev</code>设置相应方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">new Vue(&#123;</div><div class="line">    el:&apos;#box&apos;,</div><div class="line">    data:&#123;&#125;,</div><div class="line">    methods:&#123;</div><div class="line">        show:function(ev)&#123;</div><div class="line">            if(ev.keyCode == 13)return;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<h3 id="事件冒泡"><a href="#事件冒泡" class="headerlink" title="事件冒泡"></a>事件冒泡</h3><p>Vue中阻止事件冒泡有两种方式：<br>1.通过事件对象<code>ev.cancelBubble=true;</code>阻止事件冒泡；<br>2.在HTML中定义Vue事件时，使用<code>.stop</code>阻止：<code>@click.stop=&#39;函数&#39;</code>；<br>我本人更喜欢第二种方法，又优雅，又装逼。</p>
+<h3 id="默认行为（默认事件）"><a href="#默认行为（默认事件）" class="headerlink" title="默认行为（默认事件）"></a>默认行为（默认事件）</h3><p>在网页中的默认行为经常想让人f**k dog,常见的有点击鼠标右键，出现浏览器自带方法。获取下拉菜单时，敲击上方向键，光标移动到<code>input</code>最左侧等。<br>而Vue中解决默认事件同样也是两种方法：<br>1.仍然是通过事件对象<code>ev.preventDefault();</code>阻止；<br>2.在HTML中定义Vue事件时，使用<code>.prevent</code>：<code>@contextmenu.prevent=&#39;函数&#39;</code>；</p>
+<h3 id="键盘事件"><a href="#键盘事件" class="headerlink" title="键盘事件"></a>键盘事件</h3><p>1.<code>@keydown</code>为键盘按下后才触发事件；<br>2.<code>@keyup</code>为键盘按下前触发事件；<br>键盘事件的设置方法也很简单：<br>通过<code>($event)</code>和<code>ev.keyCode</code>即可设置。<br>并且有两种书写方式可以使用：<br>例如回车： <code>@keyup.13=&#39;函数&#39;</code> / <code>@keyup.enter=&#39;函数&#39;</code>均可。<br>上下左右键：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">@keyup/keydown.left</div><div class="line">@keyup/keydown.right</div><div class="line">@keyup/keydown.up</div><div class="line">@keyup/keydown.down</div></pre></td></tr></table></figure></p>
+<h3 id="显示隐藏"><a href="#显示隐藏" class="headerlink" title="显示隐藏"></a>显示隐藏</h3><p>1.可直接通过<code>true/false</code>设置： <code>v-show=&#39;true/false&#39;</code>;<br>2.也可以通过变量设置： <code>v-show=&#39;bool&#39;</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">new Vue(&#123;</div><div class="line">    el:&apos;#box&apos;,</div><div class="line">    data:&#123;</div><div class="line">        bool:&apos;true&apos;</div><div class="line">    &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><p>Vue中元素的属性可以通过<code>v-bind</code>设置，如： <code>v-bind:src=&#39;&#39; width/height/title...</code><br>而<code>v-bind</code>同样也有简写方式：<code>:</code>就是它的简写，如上面这句可简写为：<code>:src=&#39;&#39;</code><br>设置属性除了<code>v-bind</code>，也可直接通过属性名+大括号设置：<code>&lt;img src=&quot;&quot; alt=&quot;&quot;&gt;</code>，只不过这种方法会报出一个404错误，故不推荐使用。<br>属性设置的最佳办法仍然推荐<code>v-bind</code>：<code>&lt;img v-bind:src=&quot;url&quot; alt=&quot;&quot;&gt;</code></p>
+<h2 id="类和样式的设置-class-amp-style"><a href="#类和样式的设置-class-amp-style" class="headerlink" title="类和样式的设置(class &amp; style)"></a>类和样式的设置(class &amp; style)</h2><p>此处由于平时用的并不是很多，且样式设置方法较多，属于重点关注的部分：</p>
+<h3 id="类-class"><a href="#类-class" class="headerlink" title="类(class)"></a>类(class)</h3><p><code>v-bind:class=&#39;&#39;</code> / <code>:class=&#39;&#39;</code><br><code>v-bind:style=&#39;&#39;</code> / <code>:style=&#39;&#39;</code></p>
+<h4 id="通过data给变量赋值"><a href="#通过data给变量赋值" class="headerlink" title="通过data给变量赋值"></a>通过data给变量赋值</h4><p>例：<br>CSS：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">.red&#123;</div><div class="line">    color: red;</div><div class="line">&#125;</div><div class="line">.blue&#123;</div><div class="line">    background: blue;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>JS:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">new Vue(&#123;</div><div class="line">    el:&apos;#box&apos;,</div><div class="line">    data:&#123;</div><div class="line">        oRed:&apos;red&apos;</div><div class="line">        oBlue:&apos;blue&apos;</div><div class="line">    &#125;,</div><div class="line">    methods:&#123;</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>HTML:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;box&quot;&gt;</div><div class="line">    &lt;strong :class=&quot;[oRed]&quot;&gt;文字...&lt;/strong&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure></p>
+<p>此处class和data中的oRed关联，注意需要用’[]’括起来，以数组形式展现，如需添加多种样式，可直接往数组内添加即可：<br>HTML:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;box&quot;&gt;</div><div class="line">    &lt;strong :class=&quot;[oRed,oBlue]&quot;&gt;文字...&lt;/strong&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure></p>
+<h4 id="通过布尔判断设置"><a href="#通过布尔判断设置" class="headerlink" title="通过布尔判断设置"></a>通过布尔判断设置</h4><p>1).可直接给相应类名设置true/false<br>JS:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">new Vue(&#123;</div><div class="line">    el:&apos;#box&apos;,</div><div class="line">    data:&#123;</div><div class="line">    &#125;,</div><div class="line">    methods:&#123;</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>HTML:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;box&quot;&gt;</div><div class="line">    &lt;strong :class=&quot;&#123;red:true,blue:true&#125;&quot;&gt;文字...&lt;/strong&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure></p>
+<p>2).通过变量设置true/false<br>这是我最喜欢用的一种用法：<br>JS:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">new Vue(&#123;</div><div class="line">    el:&apos;#box&apos;,</div><div class="line">    data:&#123;</div><div class="line">        a:&apos;true&apos;,</div><div class="line">        b:&apos;false&apos;</div><div class="line">    &#125;,</div><div class="line">    methods:&#123;</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>HTML:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;box&quot;&gt;</div><div class="line">    &lt;strong :class=&quot;&#123;red:a,blue:b&#125;&quot;&gt;文字...&lt;/strong&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure></p>
+<p>3).直接在data中设置json<br>这种方法是官方推荐用法<br>JS:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">new Vue(&#123;</div><div class="line">    el:&apos;#box&apos;,</div><div class="line">    data:&#123;</div><div class="line">        json:&#123;</div><div class="line">            red:&apos;true&apos;,</div><div class="line">            blue:&apos;false&apos;</div><div class="line">        &#125;</div><div class="line">    &#125;,</div><div class="line">    methods:&#123;</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>HTML:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;box&quot;&gt;</div><div class="line">    &lt;strong :class=&quot;json&quot;&gt;文字...&lt;/strong&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="样式-style"><a href="#样式-style" class="headerlink" title="样式(style)"></a>样式(style)</h3><p>Vue中样式的设置和class设置非常相似<br>1).直接设置：<br>JS:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">new Vue(&#123;</div><div class="line">    el:&apos;#box&apos;,</div><div class="line">    data:&#123;</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>HTML:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;box&quot;&gt;</div><div class="line">    &lt;strong :style=&quot;&#123;color:red&#125;&quot;&gt;文字...&lt;/strong&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure></p>
+<p>2).在data中通过json类目设置：<br>JS:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">new Vue(&#123;</div><div class="line">    el:&apos;#box&apos;,</div><div class="line">    data:&#123;</div><div class="line">        c:&#123;color:red&#125;,</div><div class="line">        b:&#123;backgroundColor:&apos;blue&apos;&#125;</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>HTML:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;box&quot;&gt;</div><div class="line">    &lt;strong :style=&quot;[c,d]&quot;&gt;文字...&lt;/strong&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure></p>
+<p>3).直接使用json设置：<br>JS:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">new Vue(&#123;</div><div class="line">    el:&apos;#box&apos;,</div><div class="line">    data:&#123;</div><div class="line">        a:&#123;</div><div class="line">            c:&#123;color:red&#125;,</div><div class="line">            b:&#123;backgroundColor:&apos;blue&apos;&#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>HTML:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;box&quot;&gt;</div><div class="line">    &lt;strong :style=&quot;[a]&quot;&gt;文字...&lt;/strong&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure></p>
+<h2 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">模板部分比较简单，只需要用&#123;&#123;&#125;&#125;括起来即可，但也有一些特殊情况需要注意：</div><div class="line">正常情况：&#123;&#123;msg&#125;&#125;</div><div class="line">只绑定一次数据(初始数据)，后面不再更新：&#123;&#123;*msg&#125;&#125;</div><div class="line">模板中包含HTML代码，需要转译输出：&#123;&#123;&#123;msg&#125;&#125;&#125;，例如：&#123;&#123;&#123;&lt;h1&gt;看你个头&lt;/h1&gt;&#125;&#125;&#125;则不会将&lt;h1&gt;标签输出，而是转译为HTML代码</div></pre></td></tr></table></figure>
+<h2 id="过滤器"><a href="#过滤器" class="headerlink" title="过滤器"></a>过滤器</h2><p>在Vue1.x中，系统有提供自带的过滤器，但在Vue2.0以后则废除了。<br>原本的<code>uppercase</code>、<code>lowercase</code>、<code>capitalize</code>、<code>currency</code>等自带过滤器的替换方法参考官方文档即可。</p>
+<h2 id="前后台交互"><a href="#前后台交互" class="headerlink" title="前后台交互"></a>前后台交互</h2><p>类似于jQuery的$ajax，作为一个合格的MVVM框架，Vue也有自己的前后台交互方法。</p>
+<p>在进行交互前，需要引入<code>vue-resouce</code>。</p>
+<h3 id="进行get交互："><a href="#进行get交互：" class="headerlink" title="进行get交互："></a>进行get交互：</h3><p>HTML:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;input type=&quot;button&quot; value=&quot;按钮&quot; @click=&quot;get()&quot;&gt;</div></pre></td></tr></table></figure></p>
+<h4 id="获取一个普通文本数据"><a href="#获取一个普通文本数据" class="headerlink" title="获取一个普通文本数据:"></a>获取一个普通文本数据:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">new Vue(&#123;</div><div class="line">    el:&apos;body&apos;,</div><div class="line">    data:&#123;</div><div class="line"></div><div class="line">    &#125;,</div><div class="line">    methods:&#123;</div><div class="line">        get:function()&#123;</div><div class="line">            this.$http.get(&apos;aa.txt&apos;).then(function(res)&#123;</div><div class="line">                alert(res.data);</div><div class="line">            &#125;,function(res)&#123;</div><div class="line">                alert(res.status);</div><div class="line">            &#125;);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>其中的核心代码为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">this.$http.get(&apos;aa.txt&apos;).then(function(res)&#123;</div><div class="line">    alert(res.data);</div><div class="line">&#125;,function(res)&#123;</div><div class="line">    alert(res.status);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>获取到文本后，<code>.then</code>后面为回调函数，第一个是成功的回调函数，第二个是失败的回调函数。</p>
+<h4 id="给服务发送数据"><a href="#给服务发送数据" class="headerlink" title="给服务发送数据:"></a>给服务发送数据:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">this.$http.get(&apos;get.php&apos;,&#123;</div><div class="line">    a:1,</div><div class="line">    b:2</div><div class="line">&#125;).then(function(res)&#123;</div><div class="line">    alert(res.data);</div><div class="line">&#125;,function(res)&#123;</div><div class="line">    alert(res.status);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="进行post交互："><a href="#进行post交互：" class="headerlink" title="进行post交互："></a>进行post交互：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">this.$http.post(&apos;post.php&apos;,&#123;</div><div class="line">    a:1,</div><div class="line">    b:20</div><div class="line">&#125;,&#123;</div><div class="line">    emulateJSON:true</div><div class="line">&#125;).then(function(res)&#123;</div><div class="line">    alert(res.data);</div><div class="line">&#125;,function(res)&#123;</div><div class="line">    alert(res.status);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="进行jsonp交互："><a href="#进行jsonp交互：" class="headerlink" title="进行jsonp交互："></a>进行jsonp交互：</h3><p>使用最常见的搜索来进行跨域，分别用搜360和百度搜“a”,得到如下域名：</p>
+<p><code>https://sug.so.360.cn/suggest?callback=suggest_so&amp;word=a</code><br><code>https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=a&amp;cb=jshow</code></p>
+<p>那在Vue中使用jsonp时，和jQuery非常相似，这样来写即可：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">this.$http.jsonp(&apos;https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su&apos;,&#123;</div><div class="line">    wd:&apos;a&apos;</div><div class="line">&#125;,&#123;</div><div class="line">    jsonp:&apos;cb&apos;	//callback名字，默认名字就是&quot;callback&quot;</div><div class="line">&#125;).then(function(res)&#123;</div><div class="line">    alert(res.data.s);</div><div class="line">&#125;,function(res)&#123;</div><div class="line">    alert(res.status);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/框架知识/" rel="tag"># -框架知识</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/22/display-table-cell-使用心得/" rel="next" title="display:table-cell 使用心得">
+                <i class="fa fa-chevron-left"></i> display:table-cell 使用心得
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/07/JS最基础的一个模板引擎/" rel="prev" title="JS最基础的一个模板引擎">
+                JS最基础的一个模板引擎 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="贾撒欢" />
+          <p class="site-author-name" itemprop="name">贾撒欢</p>
+           
+              <p class="site-description motion-element" itemprop="description">一个前端杂货铺</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ericjiajia" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Vue基本雏形"><span class="nav-number">1.</span> <span class="nav-text">Vue基本雏形</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Vue常用指令"><span class="nav-number">2.</span> <span class="nav-text">Vue常用指令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#v-model"><span class="nav-number">2.1.</span> <span class="nav-text">v-model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#循环"><span class="nav-number">2.2.</span> <span class="nav-text">循环</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件"><span class="nav-number">2.3.</span> <span class="nav-text">事件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#事件对象"><span class="nav-number">2.3.1.</span> <span class="nav-text">事件对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事件冒泡"><span class="nav-number">2.3.2.</span> <span class="nav-text">事件冒泡</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#默认行为（默认事件）"><span class="nav-number">2.3.3.</span> <span class="nav-text">默认行为（默认事件）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#键盘事件"><span class="nav-number">2.3.4.</span> <span class="nav-text">键盘事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#显示隐藏"><span class="nav-number">2.3.5.</span> <span class="nav-text">显示隐藏</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性"><span class="nav-number">2.4.</span> <span class="nav-text">属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类和样式的设置-class-amp-style"><span class="nav-number">2.5.</span> <span class="nav-text">类和样式的设置(class & style)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#类-class"><span class="nav-number">2.5.1.</span> <span class="nav-text">类(class)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#通过data给变量赋值"><span class="nav-number">2.5.1.1.</span> <span class="nav-text">通过data给变量赋值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#通过布尔判断设置"><span class="nav-number">2.5.1.2.</span> <span class="nav-text">通过布尔判断设置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样式-style"><span class="nav-number">2.5.2.</span> <span class="nav-text">样式(style)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模板"><span class="nav-number">2.6.</span> <span class="nav-text">模板</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#过滤器"><span class="nav-number">2.7.</span> <span class="nav-text">过滤器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前后台交互"><span class="nav-number">2.8.</span> <span class="nav-text">前后台交互</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#进行get交互："><span class="nav-number">2.8.1.</span> <span class="nav-text">进行get交互：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#获取一个普通文本数据"><span class="nav-number">2.8.1.1.</span> <span class="nav-text">获取一个普通文本数据:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#给服务发送数据"><span class="nav-number">2.8.1.2.</span> <span class="nav-text">给服务发送数据:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进行post交互："><span class="nav-number">2.8.2.</span> <span class="nav-text">进行post交互：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进行jsonp交互："><span class="nav-number">2.8.3.</span> <span class="nav-text">进行jsonp交互：</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">贾撒欢</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
