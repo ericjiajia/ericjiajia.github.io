@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="-经验总结," />
+  <meta name="keywords" content="-基础知识," />
 
 
 
@@ -93,20 +93,18 @@
 
 
 
-<meta name="description" content="最近在学习中才知道模板引擎这个东西，发现这玩意很受用，在自己看了一些介绍文章之后，也发现了JS的replace函数中，第二个参数不仅仅可以是一个字符串，还可以是一个函数。 而以前却完全不知道这个知识点。并没有研究的很深入，但想通过这篇文章，就一个JS最基本的模板引擎总结一下我对于replace函数的新认识。 模板引擎基本原理模板引擎的原理说简单也比较简单，就是通过正则表达式识别模板标识，并利用数据">
-<meta name="keywords" content="-经验总结">
+<meta name="description" content="以前只是对线程和进程有一个模糊的了解，但今天去面试，被面试官问到这道题，却无法清晰的说出来，回来赶紧整理一下，加深印象。 在知乎上看到一位网友说的非常形象：1234开个QQ，开了一个进程；开了迅雷，又开了一个进程。在QQ这个进程里，传输文字开了一个线程，传输语音开了一个线程，弹出对话框又开了一个线程。所以运行某个软件，相当于开了一个进程。在这个软件运行的过程里（在这个进程里），多个工作支撑的完成Q">
+<meta name="keywords" content="-基础知识">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JS最基础的一个模板引擎">
-<meta property="og:url" content="http://yoursite.com/2017/08/07/JS最基础的一个模板引擎/index.html">
+<meta property="og:title" content="什么是线程，什么是进程">
+<meta property="og:url" content="http://yoursite.com/2017/09/11/什么是线程，什么是进程/index.html">
 <meta property="og:site_name" content="贾撒欢的前端杂货铺">
-<meta property="og:description" content="最近在学习中才知道模板引擎这个东西，发现这玩意很受用，在自己看了一些介绍文章之后，也发现了JS的replace函数中，第二个参数不仅仅可以是一个字符串，还可以是一个函数。 而以前却完全不知道这个知识点。并没有研究的很深入，但想通过这篇文章，就一个JS最基本的模板引擎总结一下我对于replace函数的新认识。 模板引擎基本原理模板引擎的原理说简单也比较简单，就是通过正则表达式识别模板标识，并利用数据">
+<meta property="og:description" content="以前只是对线程和进程有一个模糊的了解，但今天去面试，被面试官问到这道题，却无法清晰的说出来，回来赶紧整理一下，加深印象。 在知乎上看到一位网友说的非常形象：1234开个QQ，开了一个进程；开了迅雷，又开了一个进程。在QQ这个进程里，传输文字开了一个线程，传输语音开了一个线程，弹出对话框又开了一个线程。所以运行某个软件，相当于开了一个进程。在这个软件运行的过程里（在这个进程里），多个工作支撑的完成Q">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://oss-cn-hangzhou.aliyuncs.com/yqfiles/e437978f5ecc9f4046d63de6cdcce42bdc308ea2.png?_=5518474">
-<meta property="og:updated_time" content="2017-08-07T06:34:35.590Z">
+<meta property="og:updated_time" content="2017-09-11T13:26:04.584Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JS最基础的一个模板引擎">
-<meta name="twitter:description" content="最近在学习中才知道模板引擎这个东西，发现这玩意很受用，在自己看了一些介绍文章之后，也发现了JS的replace函数中，第二个参数不仅仅可以是一个字符串，还可以是一个函数。 而以前却完全不知道这个知识点。并没有研究的很深入，但想通过这篇文章，就一个JS最基本的模板引擎总结一下我对于replace函数的新认识。 模板引擎基本原理模板引擎的原理说简单也比较简单，就是通过正则表达式识别模板标识，并利用数据">
-<meta name="twitter:image" content="https://oss-cn-hangzhou.aliyuncs.com/yqfiles/e437978f5ecc9f4046d63de6cdcce42bdc308ea2.png?_=5518474">
+<meta name="twitter:title" content="什么是线程，什么是进程">
+<meta name="twitter:description" content="以前只是对线程和进程有一个模糊的了解，但今天去面试，被面试官问到这道题，却无法清晰的说出来，回来赶紧整理一下，加深印象。 在知乎上看到一位网友说的非常形象：1234开个QQ，开了一个进程；开了迅雷，又开了一个进程。在QQ这个进程里，传输文字开了一个线程，传输语音开了一个线程，弹出对话框又开了一个线程。所以运行某个软件，相当于开了一个进程。在这个软件运行的过程里（在这个进程里），多个工作支撑的完成Q">
 
 
 
@@ -134,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/08/07/JS最基础的一个模板引擎/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/09/11/什么是线程，什么是进程/"/>
 
 
 
 
 
-  <title>JS最基础的一个模板引擎 | 贾撒欢的前端杂货铺</title>
+  <title>什么是线程，什么是进程 | 贾撒欢的前端杂货铺</title>
   
 
 
@@ -269,7 +267,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/07/JS最基础的一个模板引擎/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/11/什么是线程，什么是进程/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="贾撒欢">
@@ -286,7 +284,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">JS最基础的一个模板引擎</h1>
+          <h1 class="post-title" itemprop="name headline">什么是线程，什么是进程</h1>
         
 
         <div class="post-meta">
@@ -298,8 +296,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-07T11:40:02+08:00">
-                2017-08-07
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-11T21:01:13+08:00">
+                2017-09-11
               </time>
             
 
@@ -321,8 +319,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/经验总结/" itemprop="url" rel="index">
-                    <span itemprop="name">经验总结</span>
+                  <a href="/categories/基础知识/" itemprop="url" rel="index">
+                    <span itemprop="name">基础知识</span>
                   </a>
                 </span>
 
@@ -355,22 +353,24 @@
       
 
       
-        <p>最近在学习中才知道模板引擎这个东西，发现这玩意很受用，在自己看了一些介绍文章之后，也发现了JS的replace函数中，第二个参数不仅仅可以是一个字符串，还可以是一个函数。</p>
-<p>而以前却完全不知道这个知识点。并没有研究的很深入，但想通过这篇文章，就一个JS最基本的模板引擎总结一下我对于replace函数的新认识。</p>
-<h1 id="模板引擎基本原理"><a href="#模板引擎基本原理" class="headerlink" title="模板引擎基本原理"></a>模板引擎基本原理</h1><p>模板引擎的原理说简单也比较简单，就是通过正则表达式识别模板标识，并利用数据替换其中的标识符。<br>这其中的难点有两个，<em>一个就是正则表达式的使用，另一个是replace函数中，第二个参数可以是函数的知识点</em>。</p>
-<a id="more"></a>
-<p>从网上扒了一个图片示例：<br><img src="https://oss-cn-hangzhou.aliyuncs.com/yqfiles/e437978f5ecc9f4046d63de6cdcce42bdc308ea2.png?_=5518474" alt="模板引擎原理"></p>
-<p>这其中的模板引擎就是<code>Hello, &lt;%= name%&gt;</code>。<br>假如传入的数据是<code>{name:&#39;eric&#39;}</code>，那么通过模板引擎解析后，我们希望得到<code>Hello,eric</code>。<br>从模板引擎来看，模板的前半部分是普通字符串，后半部分是模板标识，我们只用将其中的标识符替换为表达式即可，渲染过程就是图片中的过程。</p>
-<p>而我自己也基于此，写了一个非常简单的模板引擎：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var info = render(&apos;我是&#123;&#123;name&#125;&#125;,年龄&#123;&#123;age&#125;&#125;,性别&#123;&#123;sex&#125;&#125;&apos;,&#123;</div><div class="line">           		name:&apos;eric&apos;,</div><div class="line">           		age:18</div><div class="line">           	&#125;);</div><div class="line">           	</div><div class="line">console.log(info);</div></pre></td></tr></table></figure></p>
-<p>输出结果为：我是eric,年龄18,性别undefined</p>
-<p>主体函数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">function render(tpl,data) &#123;</div><div class="line">    return tpl.replace(/\&#123;\&#123;(.+?)\&#125;\&#125;/g,function () &#123;</div><div class="line">        var key = arguments[1];</div><div class="line">        return data[key];</div><div class="line">    &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h1 id="replace的函数参数"><a href="#replace的函数参数" class="headerlink" title="replace的函数参数"></a>replace的函数参数</h1><p>通过上面的例子可以看到，在给tpl使用replace方法时，第一个参数为正则的匹配式，而第二个参数则为一个函数。<br>我之前由于不知道replace可以使用函数传递参数，看到这个写法后也是一脸懵逼。</p>
-<p>所以为了便于理解，这个函数也可以这么写：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function render(tpl,data) &#123;</div><div class="line">    return tpl.replace(/\&#123;\&#123;(.+?)\&#125;\&#125;/g,function (m,m1) &#123;</div><div class="line">        return data[m1];</div><div class="line">    &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>在控制台打断点后，可以很明显的看出，这个函数里的两个参数分别为什么：</p>
-<p>m代表<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;&#123;name&#125;&#125;</div></pre></td></tr></table></figure></p>
-<p>，而m1则代表<code>name</code>。也就是说m是将被替换的标识符，而m1是被传入数据的键名。</p>
-<p>这也就是replace方法里，第二个参数为function时的用法。</p>
+        <p>以前只是对线程和进程有一个模糊的了解，但今天去面试，被面试官问到这道题，却无法清晰的说出来，回来赶紧整理一下，加深印象。</p>
+<p>在知乎上看到一位网友说的非常形象：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">开个QQ，开了一个进程；开了迅雷，又开了一个进程。</div><div class="line">在QQ这个进程里，传输文字开了一个线程，传输语音开了一个线程，弹出对话框又开了一个线程。所以运行某个软件，相当于开了一个进程。在这个软件运行的过程里（在这个进程里），</div><div class="line">多个工作支撑的完成QQ的运行，那么这多个工作分别有一个线程。</div><div class="line">所以一个进程管着多个线程。通俗的讲：“进程是爹妈，管着众多线程的儿子”...</div></pre></td></tr></table></figure></p>
+<p>那从专业角度来讲：<br><a id="more"></a></p>
+<h1 id="线程与进程的联系和区别"><a href="#线程与进程的联系和区别" class="headerlink" title="线程与进程的联系和区别"></a>线程与进程的联系和区别</h1><h2 id="线程是什么？"><a href="#线程是什么？" class="headerlink" title="线程是什么？"></a>线程是什么？</h2><p>线程是CPU独立运行和独立调度的基本单位；</p>
+<h2 id="进程是什么？"><a href="#进程是什么？" class="headerlink" title="进程是什么？"></a>进程是什么？</h2><p>进程是资源分配的基本单位；</p>
+<h2 id="两者的联系"><a href="#两者的联系" class="headerlink" title="两者的联系"></a>两者的联系</h2><p>进程和线程都是操作系统所运行的基本单元</p>
+<h2 id="两者的区别"><a href="#两者的区别" class="headerlink" title="两者的区别"></a>两者的区别</h2><ol>
+<li>进程具有独立的空间地址，一个进程崩溃后，在保护模式下不会对其他进程产生影响。</li>
+<li>线程只是一个进程不同的执行路径，线程有自己的堆栈和局部变量，但线程之间没有单独的地址空间，一个线程死掉就等于整个进程死掉。</li>
+</ol>
+<h1 id="什么是多线程"><a href="#什么是多线程" class="headerlink" title="什么是多线程"></a>什么是多线程</h1><p>多线程：指从软件或者硬件上实现多个线程的并发技术</p>
+<h2 id="多线程的优点"><a href="#多线程的优点" class="headerlink" title="多线程的优点"></a>多线程的优点</h2><ol>
+<li>使用多线程可以把程序中占据时间长的任务放到后台去处理，如：图片、视频的下载</li>
+<li>发挥多核处理器的优势：并发执行，让系统运行的更快、更流畅，用户体验更好<h2 id="多线程的缺点"><a href="#多线程的缺点" class="headerlink" title="多线程的缺点"></a>多线程的缺点</h2></li>
+<li>大量的线程降低代码可读性</li>
+<li>更多线程需要更多的内存空间</li>
+<li>当多个线程对同一个资源出现争夺的时候要注意线程安全的问题</li>
+</ol>
 
       
     </div>
@@ -400,7 +400,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/经验总结/" rel="tag"># -经验总结</a>
+            <a href="/tags/基础知识/" rel="tag"># -基础知识</a>
           
         </div>
       
@@ -413,8 +413,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/07/29/Vue踩坑指南(一 —— 基础篇)/" rel="next" title="Vue踩坑指南(一：基础篇)">
-                <i class="fa fa-chevron-left"></i> Vue踩坑指南(一：基础篇)
+              <a href="/2017/08/21/循环绑定事件中解决闭包的三种解决方法（二）/" rel="next" title="循环绑定事件中解决闭包的三种解决方法（二）">
+                <i class="fa fa-chevron-left"></i> 循环绑定事件中解决闭包的三种解决方法（二）
               </a>
             
           </div>
@@ -422,10 +422,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/08/21/循环绑定事件中解决闭包的三种解决方法（一）/" rel="prev" title="循环绑定事件中解决闭包的三种解决方法（一）">
-                循环绑定事件中解决闭包的三种解决方法（一） <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -566,7 +562,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#模板引擎基本原理"><span class="nav-number">1.</span> <span class="nav-text">模板引擎基本原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#replace的函数参数"><span class="nav-number">2.</span> <span class="nav-text">replace的函数参数</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#线程与进程的联系和区别"><span class="nav-number">1.</span> <span class="nav-text">线程与进程的联系和区别</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#线程是什么？"><span class="nav-number">1.1.</span> <span class="nav-text">线程是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进程是什么？"><span class="nav-number">1.2.</span> <span class="nav-text">进程是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#两者的联系"><span class="nav-number">1.3.</span> <span class="nav-text">两者的联系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#两者的区别"><span class="nav-number">1.4.</span> <span class="nav-text">两者的区别</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是多线程"><span class="nav-number">2.</span> <span class="nav-text">什么是多线程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程的优点"><span class="nav-number">2.1.</span> <span class="nav-text">多线程的优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程的缺点"><span class="nav-number">2.2.</span> <span class="nav-text">多线程的缺点</span></a></li></ol></li></ol></div>
             
 
           </div>
